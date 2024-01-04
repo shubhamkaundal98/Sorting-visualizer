@@ -47,7 +47,13 @@ button:hover {
 }
 
 #bars {
-    margin: 50px 250px
+    display: flex;
+    flex-wrap: nowrap;
+    width: 60%;
+    height: 300px;
+    justify-content: center;
+    margin: 50px 250px;
+    transition: 2s all ease;
 }
 
 .divbars{
