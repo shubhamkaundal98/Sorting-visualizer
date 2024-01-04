@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="style.css" rel="stylesheet">
+</head>
+<body>
+    <header class="title">
+        <h1>Sorting Visualizer</h1>
+    </header>
+    <nav>
+        <div class="align-left">
+            <button id="new_array">new array</button>
+            <label for="array_size">number of bars</label>
+            <input id="array_size" type="range" max="100" min="10" value="50">
+        </div>
+        
+
+        <div class="align-right">
+            <button id="bubble">bubble sort</button>
+            <button id="insertion">insertion sort</button>
+            <button id="merge">merge sort</button>
+            <button id="selection">selection sort</button>
+            <button id="quick">quick sort</button>
+        </div>
+    </nav>
+    <div class="container">
+        <div id="bars"></div>
+    </div>
+    
+    <script src="./js/sorting.js"></script>
+    <script src="./js/enabledisable_fn.js"></script>
+    <script src="./js/bubble_sort.js"></script>
+    <script src="./js/insertion_sort.js"></script>
+    <script src="./js/merge_sort.js"></script>
+    <script src="./js/selection_sort.js"></script>
+    <script src="./js/quick_sort.js"></script>
+
+</body>
+</html>
