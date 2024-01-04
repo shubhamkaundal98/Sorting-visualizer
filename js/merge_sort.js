@@ -23,11 +23,11 @@ async function merge(start, mid, end) {
         divbars[start + i].style.background = "red";
         divbars[mid + 1 + j].style.background = "red";
 
-        await new Promise((resolve) =>
-            setTimeout(() => {
-                resolve();
-            }, 260)
-        );
+        while(isSortingPaused){
+            await new Promise(resolve => setTimeout(resolve, 100))
+        }
+
+        await speed(delay)
 
         if (parseInt(leftArray[i]) <= parseInt(rightArray[j])) {
         divbars[start + i].style.background = "orange";
@@ -49,11 +49,9 @@ async function merge(start, mid, end) {
 
     while (i < n1) {
         divbars[start + i].style.background = "orange";
-        await new Promise((resolve) =>
-            setTimeout(() => {
-                resolve();
-            }, 260)
-        );
+        
+        await speed(delay)
+        
         divbars[k].style.height = leftArray[i];
         i++;
         k++;
@@ -61,11 +59,9 @@ async function merge(start, mid, end) {
 
     while (j < n2) {
         divbars[mid + 1 + j].style.background = "orange";
-        await new Promise((resolve) =>
-            setTimeout(() => {
-                resolve();
-            }, 260)
-        );
+        
+        await speed(delay)
+        
         divbars[k].style.height = rightArray[j];
         j++;
         k++;

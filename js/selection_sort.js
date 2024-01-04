@@ -12,19 +12,17 @@ async function selection_sort() {
         
         divbars[i].style.background = "#0075ff"
 
-        await new Promise((resolve) => {
-            setTimeout(() => {
-                resolve()
-            },260)
-        })
+        await speed(delay)
 
         for(let j =i+1;j<divbars.length;j++){
             divbars[j].style.background = "red"
-            await new Promise((resolve) => {
-                setTimeout(() => {
-                    resolve()
-                },260)
-            })
+            
+            while(isSortingPaused){
+                await new Promise(resolve => setTimeout(resolve, 100))
+            }
+
+            await speed(delay)
+
             if(parseInt(divbars[j].style.height)<parseInt(divbars[min_idx].style.height)){
                 if(min_idx !== i){
                     divbars[min_idx].style.background = "yellow"
@@ -34,6 +32,7 @@ async function selection_sort() {
             }else {
             divbars[j].style.background = "yellow"
             }
+            
         }
 
         swap(divbars[i],divbars[min_idx])

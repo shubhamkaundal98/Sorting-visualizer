@@ -9,21 +9,16 @@ async function insertion_sort() {
         divbars[j].style.background = "red";
         divbars[j + 1].style.background = "red";
 
-        await new Promise((resolve) =>
-            setTimeout(() => {
-                resolve();
-            }, 260)
-        );
+        await speed(delay)
 
         while (j >= 0 && parseInt(divbars[j].style.height) > parseInt(current)) {
             divbars[j].style.background = "orange"
             divbars[j + 1].style.height = divbars[j].style.height;
             j--;
-            await new Promise((resolve) =>
-            setTimeout(() => {
-                resolve();
-            }, 260)
-        );
+            await speed(delay)
+            while(isSortingPaused){
+                await new Promise(resolve => setTimeout(resolve, 100))
+            }
         }
 
         divbars[j + 1].style.height = current;

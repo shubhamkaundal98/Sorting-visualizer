@@ -1,5 +1,8 @@
 function disableButtons() {
     for(let i=0;i<buttons.length;i++){
+        if(buttons[i].id == "pause" || buttons[i].id == "resume"){
+            continue
+        }
         buttons[i].disabled = true
         buttons[i].style.pointerEvents = "none"
         buttons[i].classList.add("unselected")

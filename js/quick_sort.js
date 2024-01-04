@@ -13,19 +13,15 @@ async function partitionQuick(divbars,low,high){
     for(let j=low;j<high;j++){
         divbars[j].style.background = "#0075ff"
         
-        await new Promise((resolve) => {
-            setTimeout(() => {
-                resolve()
-            },260)
-        })
+        while(isSortingPaused){
+            await new Promise(resolve => setTimeout(resolve, 100))
+        }
+        
+        await speed(delay)
 
         if(parseInt(divbars[j].style.height) < pivot){
             i++;
-            await new Promise((resolve) => {
-                setTimeout(() => {
-                    resolve()
-                },260)
-            })
+            await speed(delay)
             swap(divbars[i],divbars[j])
 
             divbars[j].style.background = "orange"
@@ -33,19 +29,11 @@ async function partitionQuick(divbars,low,high){
         }
     }
     i++
-    await new Promise((resolve) => {
-        setTimeout(() => {
-            resolve()
-        },260)
-    })
+    await speed(delay)
     swap(divbars[i],divbars[high])
     divbars[i].style.background = "green"
 
-    await new Promise((resolve) => {
-        setTimeout(() => {
-            resolve()
-        },260)
-    })
+    await speed(delay)
 
     for(let k = 0; k < divbars.length; k++){
         if(divbars[k].style.background != 'green')

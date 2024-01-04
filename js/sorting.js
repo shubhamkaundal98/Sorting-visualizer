@@ -2,7 +2,9 @@ const new_array = document.getElementById("new_array")
 const array_size = document.getElementById("array_size")
 const bars = document.getElementById("bars")
 const buttons = document.querySelectorAll("button")
-
+const speedValue = document.getElementById("speed")
+const pause = document.getElementById("pause")
+const resume = document.getElementById("resume")
 const bubble_btn = document.getElementById("bubble")
 const insertion_btn = document.getElementById("insertion")
 const merge_btn = document.getElementById("merge")
@@ -10,6 +12,8 @@ const selection_btn = document.getElementById("selection")
 const quick_btn = document.getElementById("quick")
 
 let array = []
+let delay = 260/3
+let isSortingPaused = false
 
 function create_bars() {
     bars.innerHTML = ""
@@ -33,8 +37,33 @@ function create_bars() {
 
 create_bars()
 
+function speed(millisec) {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve()
+        },millisec)
+    })
+}
+
 new_array.addEventListener("click",create_bars)
 array_size.addEventListener("input",create_bars)
+speedValue.addEventListener("input",() => {
+    if(speedValue.value == 1){
+        delay = 260
+    } else if(speedValue.value == 3){
+        delay = 260/3
+    }else if(speedValue.value == 5){
+        delay = 260/7
+    }
+})
+
+pause.addEventListener("click",() => {
+    isSortingPaused = true
+})
+
+resume.addEventListener("click",() => {
+    isSortingPaused = false
+})
 
 bubble_btn.addEventListener("click",bubblefn)
 insertion_btn.addEventListener("click",insertionfn)

@@ -14,12 +14,11 @@ async function bubble_sort() {
             divbars[j].style.background = "red"
             divbars[j+1].style.background = "red"
 
-            await new Promise(resolve => {
-                setTimeout(() => {
-                    resolve()
-                },260)
-            })
+            while(isSortingPaused){
+                await new Promise(resolve => setTimeout(resolve, 100))
+            }
 
+            await speed(delay)
 
             if(parseInt(divbars[j].style.height)>parseInt(divbars[j+1].style.height)){
                 swap(divbars[j],divbars[j+1])
