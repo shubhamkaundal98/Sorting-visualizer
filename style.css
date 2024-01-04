@@ -15,8 +15,10 @@ nav {
 }
 
 .align-left {
-    padding: 0.5rem;
-    margin-right: 5rem;
+    margin-right: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 4px;
 }
 
 label {
@@ -29,7 +31,7 @@ input:hover {
 }
 
 .align-right {
-    margin-left: 5rem;
+    margin-left: 1rem;
 }
 
 button {
