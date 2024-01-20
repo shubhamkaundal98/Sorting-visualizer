@@ -32,6 +32,9 @@ input:hover {
 
 .align-right {
     margin-left: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 4px;
 }
 
 button {
@@ -48,14 +51,17 @@ button:hover {
     background-color: #0075ff;
 }
 
+.container {
+    display:flex;
+    justify-content:center;
+}
+
 #bars {
     display: flex;
-    flex-wrap: nowrap;
     width: 60%;
     height: 300px;
     justify-content: center;
-    margin: 50px 250px;
-    transition: 2s all ease;
+    margin: 50px 0px;
 }
 
 .divbars{
@@ -74,4 +80,16 @@ button:hover {
     color: white;
     border-color: red;
     background-color: red;
+}
+
+@media all and (max-width:455px) {
+    .align-left {
+        flex-direction : column;
+        row-gap : 4px;
+    }
+
+    .align-right {
+        flex-direction : column;
+        row-gap : 4px;
+    }
 }
