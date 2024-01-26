@@ -17,6 +17,11 @@ async function selection_sort() {
         for(let j =i+1;j<divbars.length;j++){
             divbars[j].style.background = "red"
             
+            if(isSortingRestarted) {
+                isSortingRestarted=false
+                return
+            }
+
             while(isSortingPaused){
                 await new Promise(resolve => setTimeout(resolve, 100))
             }

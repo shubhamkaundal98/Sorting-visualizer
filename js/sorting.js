@@ -5,6 +5,7 @@ const buttons = document.querySelectorAll("button")
 const speedValue = document.getElementById("speed")
 const pause = document.getElementById("pause")
 const resume = document.getElementById("resume")
+const restart = document.getElementById("restart")
 const bubble_btn = document.getElementById("bubble")
 const insertion_btn = document.getElementById("insertion")
 const merge_btn = document.getElementById("merge")
@@ -14,6 +15,7 @@ const quick_btn = document.getElementById("quick")
 let array = []
 let delay = 260/3
 let isSortingPaused = false
+let isSortingRestarted = false
 
 function create_bars() {
     bars.innerHTML = ""
@@ -65,6 +67,14 @@ resume.addEventListener("click",() => {
     isSortingPaused = false
 })
 
+restart.addEventListener("click",() => {
+    isSortingRestarted = true
+    array_size.value = 50
+    speedValue.value = 3
+    create_bars()
+})
+
+
 bubble_btn.addEventListener("click",bubblefn)
 insertion_btn.addEventListener("click",insertionfn)
 merge_btn.addEventListener("click",mergefn)
@@ -78,8 +88,12 @@ async function bubblefn() {
 
     this.classList.remove("unselected")
 
-    await bubble_sort()
-    
+    if(isSortingRestarted) {
+        isSortingRestarted=false
+    }
+
+    await bubble_sort() 
+
     enableButtons()
 
     this.classList.remove("selected")
@@ -91,6 +105,10 @@ async function insertionfn() {
     disableButtons()
 
     this.classList.remove("unselected")
+
+    if(isSortingRestarted) {
+        isSortingRestarted=false
+    }
 
     await insertion_sort()
     
@@ -107,6 +125,10 @@ async function mergefn() {
 
     this.classList.remove("unselected")
 
+    if(isSortingRestarted) {
+        isSortingRestarted=false
+    }
+
     await merge_sort()
     
     enableButtons()
@@ -122,6 +144,10 @@ async function selectionfn() {
 
     this.classList.remove("unselected")
 
+    if(isSortingRestarted) {
+        isSortingRestarted=false
+    }
+
     await selection_sort()
     
     enableButtons()
@@ -136,6 +162,10 @@ async function quickfn() {
     disableButtons()
 
     this.classList.remove("unselected")
+
+    if(isSortingRestarted) {
+        isSortingRestarted=false
+    }
 
     await quick_sort()
 

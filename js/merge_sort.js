@@ -1,4 +1,6 @@
 async function merge(start, mid, end) {
+    if(isSortingRestarted) return
+
     const divbars = document.querySelectorAll(".divbars");
 
     const n1 = mid - start + 1;
@@ -22,6 +24,8 @@ async function merge(start, mid, end) {
     while (i < n1 && j < n2) {
         divbars[start + i].style.background = "red";
         divbars[mid + 1 + j].style.background = "red";
+
+        if(isSortingRestarted) return
 
         while(isSortingPaused){
             await new Promise(resolve => setTimeout(resolve, 100))
@@ -73,9 +77,12 @@ async function merge(start, mid, end) {
 }
 
 async function partition(start, end) {
+    
+    if(isSortingRestarted) return
+
     if (start < end) {
         const mid = Math.floor((start + end) / 2);
-
+        
         await partition(start, mid);
         await partition(mid + 1, end);
 
@@ -87,6 +94,11 @@ async function merge_sort() {
     const divbars = document.querySelectorAll(".divbars");
     
     await partition(0, divbars.length - 1);
+    
+    if(isSortingRestarted) {
+        isSortingRestarted=false
+        return
+    }
 
     for (let i = 0; i < divbars.length; i++) {
         divbars[i].style.background = "green";

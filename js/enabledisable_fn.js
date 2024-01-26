@@ -1,6 +1,6 @@
 function disableButtons() {
     for(let i=0;i<buttons.length;i++){
-        if(buttons[i].id == "pause" || buttons[i].id == "resume"){
+        if(buttons[i].id == "pause" || buttons[i].id == "resume" || buttons[i].id == "restart"){
             continue
         }
         buttons[i].disabled = true

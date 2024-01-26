@@ -16,6 +16,12 @@ async function insertion_sort() {
             divbars[j + 1].style.height = divbars[j].style.height;
             j--;
             await speed(delay)
+
+            if(isSortingRestarted) {
+                isSortingRestarted=false
+                return
+            }
+
             while(isSortingPaused){
                 await new Promise(resolve => setTimeout(resolve, 100))
             }

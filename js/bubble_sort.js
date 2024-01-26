@@ -14,6 +14,11 @@ async function bubble_sort() {
             divbars[j].style.background = "red"
             divbars[j+1].style.background = "red"
 
+            if(isSortingRestarted) {
+                isSortingRestarted=false
+                return
+            }
+
             while(isSortingPaused){
                 await new Promise(resolve => setTimeout(resolve, 100))
             }

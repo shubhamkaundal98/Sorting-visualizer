@@ -12,7 +12,9 @@ async function partitionQuick(divbars,low,high){
     
     for(let j=low;j<high;j++){
         divbars[j].style.background = "#0075ff"
-        
+
+        if(isSortingRestarted) return
+
         while(isSortingPaused){
             await new Promise(resolve => setTimeout(resolve, 100))
         }
@@ -44,9 +46,14 @@ async function partitionQuick(divbars,low,high){
 }
 
 async function quick(divbars,low,high) {
+    
+    if(isSortingRestarted) return
+
     if(low<high){
 
         let partitionIdx = await partitionQuick(divbars,low,high)
+        
+        if(isSortingRestarted) return
 
         await quick(divbars,low,partitionIdx-1)
         await quick(divbars,partitionIdx+1,high)
@@ -64,4 +71,8 @@ async function quick_sort() {
     const divbars = document.querySelectorAll(".divbars")
 
     await quick(divbars,0,divbars.length-1)
+    
+    if(isSortingRestarted) {
+        isSortingRestarted=false
+    }
 }
