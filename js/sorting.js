@@ -69,6 +69,7 @@ resume.addEventListener("click",() => {
 
 restart.addEventListener("click",() => {
     isSortingRestarted = true
+    isSortingPaused = false
     array_size.value = 50
     speedValue.value = 3
     create_bars()
@@ -92,6 +93,10 @@ async function bubblefn() {
         isSortingRestarted=false
     }
 
+    if(isSortingPaused) {
+        isSortingPaused=false
+    }
+
     await bubble_sort() 
 
     enableButtons()
@@ -110,6 +115,10 @@ async function insertionfn() {
         isSortingRestarted=false
     }
 
+    if(isSortingPaused) {
+        isSortingPaused=false
+    }
+
     await insertion_sort()
     
     enableButtons()
@@ -125,8 +134,12 @@ async function mergefn() {
 
     this.classList.remove("unselected")
 
-    if(isSortingRestarted) {
-        isSortingRestarted=false
+    if(isSortingPaused) {
+        isSortingPaused=false
+    }
+
+    if(isSortingPaused) {
+        isSortingPaused = false
     }
 
     await merge_sort()
@@ -148,6 +161,10 @@ async function selectionfn() {
         isSortingRestarted=false
     }
 
+    if(isSortingPaused) {
+        isSortingPaused=false
+    }
+
     await selection_sort()
     
     enableButtons()
@@ -165,6 +182,10 @@ async function quickfn() {
 
     if(isSortingRestarted) {
         isSortingRestarted=false
+    }
+
+    if(isSortingPaused) {
+        isSortingPaused=false
     }
 
     await quick_sort()
